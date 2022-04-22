@@ -29,6 +29,7 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "axios": "^0.26.1",
     "concurrently": "^7.1.0",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "postgres": "^3.1.0",
     "prop-types": "^15.8.1",
