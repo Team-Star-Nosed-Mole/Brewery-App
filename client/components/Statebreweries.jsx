@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Statebreweries = (props) => {
+const StateBreweries = (props) => {
   // const { favorites, username } = props;
   const [breweries, setSetBreweries] = useState();
   // const [username, setUsername] = useState(props.username);
@@ -18,10 +18,11 @@ const Statebreweries = (props) => {
     }
   }, []);
 
-  if (favorites) {
+  //If user logged in...investigate useContext for global variable
+  if (loggedIN) {
     const favoritesArray = favorites.map((favObj, index) => {
       return (
-        <Favorite
+        <Brewery
           url={favObj.url}
           name={favObj.name}
           deleteFav={deleteFav}
@@ -47,4 +48,4 @@ const Statebreweries = (props) => {
   }
 };
 
-export default FavoritesBar;
+export default StateBreweries;

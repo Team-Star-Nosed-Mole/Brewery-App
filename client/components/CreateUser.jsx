@@ -1,18 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
-import UserContext from './UserDetails';
 
 const Login = () => {
   let navigate = useNavigate();
 
-  function loginClick() {
-    navigate('/home');
-  }
-
   return (
-    <div className="login">
-      <h1>Login</h1>
+    <div className="createuser">
+      <h1>Create User</h1>
       {/* <Link to="/home">Home</Link>  */}
     </div>
   );

@@ -1,12 +1,45 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Link, useNavigate, Redirect } from 'react-router-dom';
+import UserContext from './UserDetails';
 
 const Home = () => {
-  return (
-    <div className="Home">
-      <h1>Home</h1>
-    </div>
-  );
+  let navigate = useNavigate();
+  const user = useContext(UserContext);
+  console.log(user);
+
+  //If user is already logged in via coolies/storage (TBD by Colton) then redirect to their landing page
+  useEffect(() => {
+    if (user) {
+      navigate('/UserLanding');
+    }
+  });
+
+  function loginClick() {
+    navigate('/login');
+  }
+
+  function createClick() {
+    navigate('/createuser');
+  }
+
+  if (!user) {
+    return (
+      <div className="home">
+        <h1>Home</h1>
+        <button className="login-btn" onClick={() => loginClick()}>
+          Login
+        </button>
+        <button className="create-btn" onClick={() => createClick()}>
+          Create User
+        </button>
+        {/* <Link to="/home">Home</Link>  */}
+      </div>
+    );
+    // } else {
+    //   // <Redirect to="/userlanding" />;
+    //   navigate('/createuser');
+    // }
+  }
 };
 
 export default Home;

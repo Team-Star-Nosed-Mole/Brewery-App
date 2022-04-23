@@ -1,7 +1,15 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 import React, { createContext } from 'react';
 import Login from './Login';
+import CreateUser from './CreateUser';
 import Home from './Home';
+import UserContext from './UserDetails';
+import UserLanding from './UserLanding';
 //https://www.figma.com/file/2PRdto4pBE6alqIhw9eP4z/Brewery-App?node-id=0%3A1
 //List component----breweries in state
 //Already visited breweries
@@ -13,16 +21,28 @@ import Home from './Home';
 //      4) Only what is inside the switch component is going to get re-rendered
 //      5) Routes replaced Switch component in react-router-dom v6 https://www.youtube.com/watch?v=aZGzwEjZrXc
 
+//Hardcoding User Information for Testing Purposes.....would have to fetch this from cookies within UserDetails component I believe....
+// const user = {
+//   name: 'Ricky',
+//   favorites: ['nyc brew', 'brew4life'],
+// };
+const user = undefined;
+
 const App = () => {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route exact path="/" element={<Login />}></Route>
-          <Route exact path="/home" element={<Home />}></Route>
-        </Routes>
-      </div>
-    </Router>
+    <UserContext.Provider value={user}>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route exact path="/" element={<Home />}></Route>
+            <Route exact path="/login" element={<Login />}></Route>
+            <Route exact path="/createuser" element={<CreateUser />}></Route>
+            <Route exact path="/userlanding" element={<UserLanding />}></Route>
+            <Route path="*" element={<Navigate to="/" replace />}></Route>
+          </Routes>
+        </div>
+      </Router>
+    </UserContext.Provider>
   );
 };
 
