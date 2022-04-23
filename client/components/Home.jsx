@@ -10,7 +10,7 @@ const Home = () => {
   //If user is already logged in via coolies/storage (TBD by Colton) then redirect to their landing page
   useEffect(() => {
     if (user) {
-      navigate('/UserLanding');
+      navigate('/userlanding');
     }
   });
 
@@ -25,7 +25,6 @@ const Home = () => {
   if (!user) {
     return (
       <div className="home">
-        <h1>Home</h1>
         <button className="login-btn" onClick={() => loginClick()}>
           Login
         </button>
