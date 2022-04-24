@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
   entry: "./client/index.js",
@@ -41,7 +41,7 @@ module.exports = {
         use: ["file-loader"],
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.css$/i,
         use: [
           // [style-loader](/loaders/style-loader)
           { loader: "style-loader" },
@@ -64,7 +64,7 @@ module.exports = {
       filename: "index.html",
       template: "template.html",
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
   resolve: { extensions: [".js", ".jsx"] },
 };

@@ -1,4 +1,6 @@
-//return all users
+const db = require("./db");
+
+//return all users1
 const returnAllUsers = "SELECT * FROM users";
 db.query(returnAllUsers)
   .then((response) => {
@@ -7,7 +9,8 @@ db.query(returnAllUsers)
   .catch((error) => console.log("error: ", error));
 
 //return user by ID
-const returnOneUser = "SELECT * FROM users WHERE id = 2";
+const id = req.query.id;
+const returnOneUser = `SELECT * FROM users WHERE id = ${id}`;
 db.query(returnOneUser)
   .then((response) => {
     console.log("response: ", response);
