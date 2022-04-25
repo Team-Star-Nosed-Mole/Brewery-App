@@ -82,4 +82,12 @@ userController.setCookie = (req, res, next) => {
   return next();
 };
 
+userController.checkUser = (req, res, next) => {
+  if(!req.cookies) { 
+    next() 
+  } else { 
+    res.redirect('/userlanding');
+  }
+}
+
 module.exports = userController;

@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
+
 const path = require("path");
+const cookieParser = require('cookie-parser');
 const apiBrewRouter = require("./routes/apiBrewRouter");
 const visitRouter = require("./routes/visitRouter");
 const db = require("./db.js");
+
 
 const userController = require('./userController');
 
@@ -11,6 +14,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use("/api", apiBrewRouter);
 
@@ -19,8 +23,15 @@ app.use("/visited", visitRouter);
 app.use("/client", express.static(path.resolve(__dirname, "../client")));
 
 
-app.post('/createUser', userController.createUser, (req, res) => {
-  console.log(`MADE IT BACK OUT OF CREATE USER`);
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../client/template.html'));
+});
+
+app.get('/login', userController.checkUser, (req, res) => {
+  res.status(200);
+})
+
+app.post('/createUser', userController.createUser,  (req, res) => {
   res.json(res.locals.users);
 });
 
