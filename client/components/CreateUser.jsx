@@ -35,77 +35,51 @@ const CreateUser = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className='createuser'>
-      <h1>Create User Page</h1>
-
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            name='username'
-            type='text'
-            placeholder='username'
-            onChange={({ target }) => setUsername(target.value)}
-          ></input>
-          <input
-            name='password'
-            type='password'
-            placeholder='password'
-            onChange={({ target }) => setPassword(target.value)}
-          ></input>
-          <input
-            name='state'
-            type='text'
-            placeholder='state'
-            onChange={({ target }) => setState(target.value)}
-          ></input>
-=======
     <div>
       <h1>Join Up and Drink Up</h1>
 
       <div>
-        <form className="createuser" onSubmit={handleSubmit}>
+        <form className='createuser' onSubmit={handleSubmit}>
           <div>
             <input
-              name="username"
-              type="text"
-              placeholder="username"
+              name='username'
+              type='text'
+              placeholder='username'
               onChange={({ target }) => setUsername(target.value)}
             ></input>
           </div>
           <div>
             <input
-              name="password"
-              type="password"
-              placeholder="password"
+              name='password'
+              type='password'
+              placeholder='password'
               onChange={({ target }) => setPassword(target.value)}
             ></input>
           </div>
           <div>
             <input
-              name="homestate"
-              type="text"
-              placeholder="home state"
+              name='homestate'
+              type='text'
+              placeholder='home state'
               onChange={({ target }) => setHomeState(target.value)}
             ></input>
           </div>
           <div>
             <input
-              name="firstname"
-              type="text"
-              placeholder="firstname"
+              name='firstname'
+              type='text'
+              placeholder='firstname'
               onChange={({ target }) => setFirstName(target.value)}
             ></input>
           </div>
           <div>
             <input
-              name="firstname"
-              type="text"
-              placeholder="lastname"
+              name='firstname'
+              type='text'
+              placeholder='lastname'
               onChange={({ target }) => setLastName(target.value)}
             ></input>
           </div>
->>>>>>> 80163d17d6f81a09aad306f89823bdc00eaf2508
 
           <input type='submit' value='Create User'></input>
         </form>
