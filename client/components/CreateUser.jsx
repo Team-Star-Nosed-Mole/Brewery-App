@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const CreateUser = () => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const [homestate, setHomeState] = useState();
-  const [firstname, setFirstName] = useState();
-  const [lastname, setLastName] = useState();
-  let navigate = useNavigate();
-  console.log('createUser');
+
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
+  const [homestate, setHomeState] = useState()
+  const [firstname, setFirstName] = useState()
+  const [lastname, setLastName] = useState()
+  let navigate = useNavigate()
+
   // function loginClick() {
   //   navigate('/home');
   // }
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); //So that form submission doesn't trigger a page refresh
-    const user = { username, password };
+    e.preventDefault() //So that form submission doesn't trigger a page refresh
+    const user = { username, password }
     try {
       const response = await axios.post('/createUser', {
         newUser: {
@@ -26,66 +27,93 @@ const CreateUser = () => {
           firstname: firstname,
           lastname: lastname,
         },
-      });
-      navigate('/');
+      })
+      navigate('/')
     } catch (error) {
-      console.log(error);
-      navigate('/createuser');
+      console.log(error)
+      navigate('/createuser')
     }
-  };
+  }
 
   return (
-    <div>
+    <div className="signInForm">
       <h1>Join Up and Drink Up</h1>
 
       <div>
         <form className='createuser' onSubmit={handleSubmit}>
           <div>
             <input
-              name='username'
-              type='text'
-              placeholder='username'
+
+              autocomplete="off"
+              className="submitItem"
+              name="username"
+              type="text"
+              placeholder="username"
+              autoFocus
+
               onChange={({ target }) => setUsername(target.value)}
             ></input>
           </div>
           <div>
             <input
-              name='password'
-              type='password'
-              placeholder='password'
+
+              autocomplete="off"
+              className="submitItem"
+              name="password"
+              type="password"
+              placeholder="password"
+
               onChange={({ target }) => setPassword(target.value)}
             ></input>
           </div>
           <div>
             <input
-              name='homestate'
-              type='text'
-              placeholder='home state'
+
+              autocomplete="off"
+              className="submitItem"
+              name="homestate"
+              type="text"
+              placeholder="home state"
+
               onChange={({ target }) => setHomeState(target.value)}
             ></input>
           </div>
           <div>
             <input
-              name='firstname'
-              type='text'
-              placeholder='firstname'
+
+              autocomplete="off"
+              className="submitItem"
+              name="firstname"
+              type="text"
+              placeholder="firstname"
+
               onChange={({ target }) => setFirstName(target.value)}
             ></input>
           </div>
           <div>
             <input
-              name='firstname'
-              type='text'
-              placeholder='lastname'
+
+              autocomplete="off"
+              className="submitItem"
+              name="firstname"
+              type="text"
+              placeholder="lastname"
+
               onChange={({ target }) => setLastName(target.value)}
             ></input>
           </div>
 
-          <input type='submit' value='Create User'></input>
+
+          <input
+            className="submitButton"
+            type="submit"
+            value="Create User"
+          ></input>
+
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreateUser;
+export default CreateUser
