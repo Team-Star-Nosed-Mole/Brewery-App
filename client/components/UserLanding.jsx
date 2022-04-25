@@ -3,6 +3,7 @@ import StateBreweries from './StateBreweries';
 import VisitedBreweries from './VisitedBreweries';
 import UserContext from './UserDetails';
 import axios from 'axios';
+import { parse } from 'ipaddr.js';
 
 const UserLanding = () => {
   //Obtaining state upon user hitting landing page - user's state breweries and visited breweries
@@ -12,28 +13,12 @@ const UserLanding = () => {
 
   useEffect(() => {
     //Query user's state breweries
-
     const getBreweries = async () => {
       if (user) {
         try {
-          console.log('TRYING TO GRAB STATE BREWERIES');
           const response = await axios.get('/api', {
             params: { state: user.state, id: user.usersid },
           });
-          // console.log(response.data);
-          // console.log(`getBreweries response data: ${response.data}`);
-          //Stated Brews - Array of Objects
-          console.log(
-            // `getBreweries state brews: ${response.data.getBreweries[0].name}`
-            `getBreweries state brews: ${response.data.getBreweries[0]}`
-          );
-          console.log(response.data.getBreweries);
-          //Visited Brews - rows field within contain each record
-          // console.log(
-          //   `getBreweries visited brews: ${response.data.visited[0].breweryname}`
-          // );
-
-          console.log(`GRABBED STATE BREWERIES`);
           setStateBreweries(response.data.getBreweries);
           setVisBreweries(response.data.visited);
         } catch (error) {
@@ -46,7 +31,9 @@ const UserLanding = () => {
 
   const addStateToVisited = async (breweryDetails) => {
     //Add state brewery to visited brewery list
-    axios.post('/visited/add', {
+    // console.log(breweryDetails.usersid);
+    // console.log(user.usersid);
+    const response = await axios.post('/visited/add', {
       addVisited: {
         breweryid: breweryDetails.id,
         breweryname: breweryDetails.name,
@@ -54,9 +41,15 @@ const UserLanding = () => {
         brewerystate: breweryDetails.state,
         brewerycity: breweryDetails.city,
         breweryphone: breweryDetails.phone,
+        userId: user.usersid,
       },
-      params: { userId: user.usersid },
+      // params: { userId: user.usersid }, //Having trouble sending over user id as separate params
     });
+
+    // setVisBreweries([...response.data.visited]);
+    setVisBreweries(JSON.parse(JSON.stringify(response.data.visited)));
+
+    // setVisBreweries(JSON.parse(JSON.stringify(response.data.visited)));
     console.log('ricky');
     console.log(`breweryDetails.id: ${breweryDetails.id}`);
     console.log(`breweryDetails.name: ${breweryDetails.name}`);

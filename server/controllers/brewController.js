@@ -39,21 +39,25 @@ brewController.getBreweries = async (req, res, next) => {
 
 brewController.getVisited = async (req, res, next) => {
   ////// getFaves to Do ////////
-  console.log(`MADE IT TO getVISITED`);
+  // console.log(`MADE IT TO getVISITED`);
   let usersID;
 
   if (req.query.id) {
     usersID = req.query.id;
-  } else {
+  } else if (req.params.id) {
     req.params.id;
+  } else {
+    usersID = res.locals.userid; //coming from addVisited controller
   }
-  console.log(`USERSID ${usersID}`);
+  // console.log(`USERSID ${usersID}`);
 
   //       /:id for getting req.params.id
   const queryString = `SELECT * FROM visited WHERE usersid = ${usersID}`;
   try {
     const visits = await db.query(queryString);
     res.locals.visited = visits.rows;
+    console.log(`IN getVISITED res.locals.visited: ${res.locals.visited}`);
+    console.log(res.locals.visited);
     return next();
   } catch (err) {
     throw new Error({
@@ -88,15 +92,36 @@ brewController.addVisited = async (req, res, next) => {
       brewerystate,
       brewerycity,
       breweryphone,
+      userId,
     } = req.body.addVisited;
     console.log(`Destructured from Post Request`);
-
-    const userId = req.params.userId;
+    // console.log(req.query.userId);
+    // let userId = req.params.userId;
     console.log(`UserID ${userId}`);
-    const queryString = `INSERT INTO visited (usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES (${userId}, ${breweryid}, ${breweryname}, ${brewerytype}, ${brewerystate}, ${brewerycity}, ${breweryphone})`;
+    res.locals.userid = userId;
+    // const queryString = `INSERT INTO visited (usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES (${userId}, ${breweryid}, ${breweryname}, ${brewerytype}, ${brewerystate}, ${brewerycity}, ${breweryphone})`;
+    const text = `INSERT INTO visited (usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *`;
+    const values = [
+      userId,
+      breweryid,
+      breweryname,
+      brewerytype,
+      brewerystate,
+      brewerycity,
+      breweryphone,
+    ];
+    // const queryString = `INSERT INTO visited (usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES (${userId}, ${breweryid}, ${breweryname}, ${brewerytype}, ${brewerystate}, ${brewerycity}, ${breweryphone})`;
+    // const queryString = `INSERT INTO visited (usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES (${userId}, ${breweryid}, ${breweryname}, ${brewerytype}, ${brewerystate}, ${brewerycity}, ${breweryphone})`;
     // const queryString = `INSERT INTO visited (id, usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES (${11}, ${1}, ${17}, ${'Amber'}, ${brewerytype}, ${'York'}, ${'LIC'}, ${breweryphone})`;
     // const queryString = `INSERT INTO visited (usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES (${1}, ${'testbrew'}, ${'testbrew9'}, ${'micro'}, ${'new_york'}, ${'NYC'}, ${'452413421'})`;
-    await db.query(queryString);
+    // await db.query(queryString);
+    await db.query(text, values, (err, res) => {
+      if (err) {
+        console.log(err.stack);
+      } else {
+        console.log(res.rows[0]);
+      }
+    });
     return next();
   } catch (err) {
     console.log(err);

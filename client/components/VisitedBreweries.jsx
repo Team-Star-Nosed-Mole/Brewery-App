@@ -4,15 +4,14 @@ import Brewery from './Brewery';
 
 const VisitedBreweries = (props) => {
   const visBreweries = props.visBreweries;
+  const removeVisited = props.removeVisited;
 
   const visBreweriesArray = visBreweries.map((brewery, index) => {
     return (
       <Brewery
-        // name={brewery.name}
-        // street={brewery.street}
-        // test_array={[...test_array]}
-        {...brewery}
-        id={`VisBrewery${index}`}
+        {...brewery} //passing all of the properties down for each brewery
+        breweryComp={'visited'}
+        uniqueid={`VisBrewery${index}`} //avoiding conflicts with database field id
         key={`VisBrewery${index}`}
       />
     );

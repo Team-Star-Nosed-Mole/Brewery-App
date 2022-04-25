@@ -4,44 +4,16 @@ import Brewery from './Brewery';
 import axios from 'axios';
 
 const StateBreweries = (props) => {
-  // const [stateBreweries, setStateBreweries] = useState();
-  const user = useContext(UserContext);
-  const addStateToVisited = props.addStateToVisited;
   const stateBreweries = props.stateBreweries;
-
-  // console.log(addStateToBreweries);
-  // console.log(`In State Breweries: ${stateBreweries}`);
-
-  //Destructure stateBreweries from UserLanding
-
-  // useEffect( () => {
-  //   //Query user's state breweries
-
-  //   const getStateBreweries = async () => {
-  //     if (user) {
-  //       try {
-  //         console.log('TRYING TO GRAB STATE BREWERIES');
-  //         const response = await axios.get('/api', {
-  //           params: { state: user.state },
-  //         });
-  //         console.log(response.data);
-
-  //         console.log(`GRABBED STATE BREWERIES`);
-  //         setStateBreweries(response.data);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   };
-  //   getStateBreweries();
-  // }, []);
+  const addStateToVisited = props.addStateToVisited;
 
   const stateBreweriesArray = stateBreweries.map((brewery, index) => {
     return (
       <Brewery
         {...brewery} //passing all of the properties down for each brewery
         addStateToVisited={addStateToVisited}
-        id={`StateBrewery${index}`}
+        breweryComp={'state'}
+        uniqueid={`StateBrewery${index}`} //avoiding conflicts with database field id
         key={`StateBrewery${index}`}
       />
     );
@@ -52,15 +24,6 @@ const StateBreweries = (props) => {
       {stateBreweriesArray}
     </div>
   );
-
-  // return (
-  //   <>
-  //     <div>
-  //       <h2>State Breweries</h2>
-  //       <h2>Test</h2>
-  //     </div>
-  //   </>
-  // );
 };
 
 export default StateBreweries;

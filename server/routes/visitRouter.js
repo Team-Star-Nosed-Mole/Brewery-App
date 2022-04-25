@@ -32,10 +32,13 @@ router.post(
   brewController.addVisited,
   brewController.getVisited,
   (req, res) => {
+    console.log('IN POST REQUEST');
+    console.log(res.locals.visited);
     console.log(
       'made it back from controller to the apiBrewRouter POST middleware'
     );
-    return res.status(200).json(res.locals.visited);
+    // return res.status(200).json(res.locals.visited);
+    return res.status(200).json(res.locals);
   }
 );
 
