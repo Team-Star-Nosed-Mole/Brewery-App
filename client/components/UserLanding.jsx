@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useContext, flushSync } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import StateBreweries from './StateBreweries';
 import VisitedBreweries from './VisitedBreweries';
 import UserContext from './UserDetails';
 import axios from 'axios';
-import { parse } from 'ipaddr.js';
 
 const UserLanding = () => {
   //Batching state changes in React leading to onClick update lags????
@@ -72,6 +71,7 @@ const UserLanding = () => {
   };
 
   if (stateBreweries) {
+    //Only rendering after mount side effect runs to retrieve state breweries
     return (
       <div className="userlanding">
         <StateBreweries

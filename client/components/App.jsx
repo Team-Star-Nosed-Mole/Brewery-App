@@ -24,18 +24,18 @@ import Footer from './Footer';
 //      5) Routes replaced Switch component in react-router-dom v6 https://www.youtube.com/watch?v=aZGzwEjZrXc
 
 //Hardcoding User Information for Testing Purposes.....would have to fetch this from cookies within UserDetails component I believe....
-const user = {
-  name: 'Ricky',
-  usersid: 2,
-  state: 'new_york',
-  favorites: ['nyc brew', 'brew4life'],
-};
+// const user = {
+//   name: 'Ricky',
+//   usersid: 2,
+//   state: 'new_york',
+//   favorites: ['nyc brew', 'brew4life'],
+// };
 //If don't want user logged in then uncomment below....
-// const user = undefined;
+const user = undefined;
 
 const App = () => {
-  //Set user information here on load???
-  const [userInfo, setUserInfo] = useState('');
+  //Set user information here on load through useeffect?
+  // const [userInfo, setUserInfo] = useState('');
 
   return (
     <UserContext.Provider value={user}>

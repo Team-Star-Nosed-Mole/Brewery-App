@@ -4,6 +4,8 @@ const path = require('path');
 const apiBrewRouter = require('./routes/apiBrewRouter');
 const visitRouter = require('./routes/visitRouter');
 
+const userController = require('./userController');
+
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
@@ -14,6 +16,22 @@ app.use('/api', apiBrewRouter);
 app.use('/visited', visitRouter);
 
 app.use('/client', express.static(path.resolve(__dirname, '../client')));
+
+app.post('/createUser', userController.createUser, (req, res) => {
+  console.log(`MADE IT BACK OUT OF CREATE USER`);
+  res.json(res.locals.users);
+});
+
+app.post(
+  '/login',
+  userController.verifyLogin,
+  userController.setCookie,
+  (req, res) => {
+    res.status(200).send('Login Success');
+    // console.log('login success!');
+    // res.redirect('/userlanding');
+  }
+);
 
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../client/template.html'));

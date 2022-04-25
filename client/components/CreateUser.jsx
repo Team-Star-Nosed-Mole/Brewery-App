@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const CreateUser = () => {
   const [username, setUsername] = useState();
@@ -17,7 +18,7 @@ const CreateUser = () => {
     e.preventDefault(); //So that form submission doesn't trigger a page refresh
     const user = { username, password };
     try {
-      const response = await axios.post('/newUser', {
+      const response = await axios.post('/createUser', {
         newUser: {
           username: username,
           password: password,
@@ -26,8 +27,10 @@ const CreateUser = () => {
           lastname: lastname,
         },
       });
+      navigate('/');
     } catch (error) {
       console.log(error);
+      navigate('/createuser');
     }
   };
 

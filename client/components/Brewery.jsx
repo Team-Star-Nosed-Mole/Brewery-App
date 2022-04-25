@@ -68,9 +68,6 @@ const Brewery = (props) => {
           <span>City: {bAttribs.brewerycity}</span>
           <button
             onClick={(e) => {
-              // console.log('Remove Visited - Function');
-              // console.log(bAttribs.removeVisited);
-
               bAttribs.removeVisited({
                 id: bAttribs.id,
                 name: bAttribs.breweryname,
