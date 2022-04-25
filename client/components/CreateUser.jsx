@@ -16,7 +16,7 @@ const Login = () => {
     const user = { username, password };
     // send the username and password to the server
     try {
-      const response = await fetch('/createuser', {
+      const response = await fetch('/createUser', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
