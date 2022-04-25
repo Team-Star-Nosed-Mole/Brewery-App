@@ -1,9 +1,10 @@
+
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from './UserDetails';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const Navbar = (props) => {
-  const user = useContext(UserContext);
+  const user = useContext(UserContext)
 
   let navigate = useNavigate();
 
@@ -13,9 +14,10 @@ const Navbar = (props) => {
     document.cookie = 'BrewCookie=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
   };
   return (
+
     <>
       <header>
-        <div className='brand'>FindMyBrews&#127867;</div>
+        <div className='brand' className='nav'>FindMyBrews&#127867;</div>
         {/*Leaving this as a UL/LI so that we want to add more navbar options */}
         <ul className='nav_links'>
           {user && (
@@ -31,4 +33,5 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+
+export default Navbar

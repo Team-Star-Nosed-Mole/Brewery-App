@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
-import UserContext from './UserDetails';
-import Brewery from './Brewery';
+import React, { useState, useEffect, useContext } from 'react'
+import UserContext from './UserDetails'
+import Brewery from './Brewery'
 
 const VisitedBreweries = (props) => {
-  const visBreweries = props.visBreweries;
-  const removeVisited = props.removeVisited;
+  const visBreweries = props.visBreweries
+  const removeVisited = props.removeVisited
 
   const visBreweriesArray = visBreweries.map((brewery, index) => {
     return (
@@ -15,14 +15,14 @@ const VisitedBreweries = (props) => {
         uniqueid={`VisBrewery${index}`} //avoiding conflicts with database field id
         key={`VisBrewery${index}`}
       />
-    );
-  });
+    )
+  })
   return (
-    <div>
+    <div className="visitedBreweries">
       <h2>Visited Breweries</h2>
       {visBreweriesArray}
     </div>
-  );
-};
+  )
+}
 
-export default VisitedBreweries;
+export default VisitedBreweries

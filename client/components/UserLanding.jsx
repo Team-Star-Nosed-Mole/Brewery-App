@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useContext } from 'react';
 import StateBreweries from './StateBreweries';
 import VisitedBreweries from './VisitedBreweries';
@@ -17,16 +18,16 @@ const UserLanding = () => {
         try {
           const response = await axios.get('/api', {
             params: { state: user.state, id: user.usersid },
-          });
-          setStateBreweries(response.data.getBreweries);
-          setVisBreweries(response.data.visited);
+          })
+          setStateBreweries(response.data.getBreweries)
+          setVisBreweries(response.data.visited)
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
       }
-    };
-    getBreweries();
-  }, []);
+    }
+    getBreweries()
+  }, [])
 
   useEffect(() => {
     console.log('State has changed');
@@ -46,7 +47,7 @@ const UserLanding = () => {
         userId: user.usersid,
       },
       // params: { userId: user.usersid }, //Having trouble sending over user id as separate params
-    });
+    })
 
     //Skips re-rendering sometimes....think due to automatchic batching...
     setVisBreweries([...response.data.visited]);
@@ -65,15 +66,15 @@ const UserLanding = () => {
         userId: user.usersid,
       },
       // params: { userId: user.usersid },
-    });
+    })
 
-    setVisBreweries([...response.data.visited]);
-  };
+    setVisBreweries([...response.data.visited])
+  }
 
   if (stateBreweries) {
     //Only rendering after mount side effect runs to retrieve state breweries
     return (
-      <div className="userlanding">
+      <div className="containerStyle">
         <StateBreweries
           stateBreweries={[...stateBreweries]}
           addStateToVisited={addStateToVisited}
@@ -83,8 +84,8 @@ const UserLanding = () => {
           removeVisited={removeVisited}
         />
       </div>
-    );
+    )
   }
-};
+}
 
-export default UserLanding;
+export default UserLanding
