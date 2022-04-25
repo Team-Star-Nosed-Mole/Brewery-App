@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
-import UserContext from './UserDetails';
+import React, { useState, useEffect, useContext } from 'react'
+import UserContext from './UserDetails'
+import styles from '../styles.css' // eslint-disable-line no-unused-vars
 
 const Navbar = (props) => {
-  const user = useContext(UserContext);
+  const user = useContext(UserContext)
 
   return (
-    <>
-      <nav>
-        <h2>NAV BAR</h2>
+    <div>
+      <nav className="nav">
+        <h1>Navbar</h1>
       </nav>
-    </>
-  );
-};
+    </div>
+  )
+}
 
-export default Navbar;
+export default Navbar

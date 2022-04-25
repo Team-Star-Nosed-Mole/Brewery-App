@@ -3,15 +3,15 @@ import {
   Route,
   Routes,
   Navigate,
-} from 'react-router-dom';
-import React, { createContext } from 'react';
-import Login from './Login';
-import CreateUser from './CreateUser';
-import Home from './Home';
-import UserContext from './UserDetails';
-import UserLanding from './UserLanding';
-import Navbar from './Navbar';
-import Footer from './Footer';
+} from 'react-router-dom'
+import React, { createContext } from 'react'
+import Login from './Login'
+import CreateUser from './CreateUser'
+import Home from './Home'
+import UserContext from './UserDetails'
+import UserLanding from './UserLanding'
+import Navbar from './Navbar'
+import Footer from './Footer'
 //https://www.figma.com/file/2PRdto4pBE6alqIhw9eP4z/Brewery-App?node-id=0%3A1
 //List component----breweries in state
 //Already visited breweries
@@ -29,7 +29,7 @@ const user = {
   usersid: 2,
   state: 'new_york',
   favorites: ['nyc brew', 'brew4life'],
-};
+}
 //If don't want user logged in then uncomment below....
 // const user = undefined;
 
@@ -38,7 +38,10 @@ const App = () => {
     <UserContext.Provider value={user}>
       <Router>
         <div className="App">
-          <Navbar />
+          <div className="navbarHolder">
+            <Navbar />
+          </div>
+          <div className="spacer"></div>
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
             <Route exact path="/login" element={<Login />}></Route>
@@ -50,7 +53,7 @@ const App = () => {
         </div>
       </Router>
     </UserContext.Provider>
-  );
-};
+  )
+}
 
-export default App;
+export default App
