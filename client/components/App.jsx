@@ -18,22 +18,25 @@ import Footer from './Footer';
 //Login
 //Notes: Had to install react-router to setup front-side routing to different web page
 //      1) All components nested within Router component have access to the router
-//      2) All of our routes go inside the Switch component
+//      2) All routes go inside the Switch component
 //      3) Route path is the end point we want to go to and then inside it is the component want to show when they finish that route
-//      4) Only what is inside the switch component is going to get re-rendered
+//      4) Only what is inside the Routes component is going to get re-rendered
 //      5) Routes replaced Switch component in react-router-dom v6 https://www.youtube.com/watch?v=aZGzwEjZrXc
 
 //Hardcoding User Information for Testing Purposes.....would have to fetch this from cookies within UserDetails component I believe....
-const user = {
-  name: 'Ricky',
-  usersid: 2,
-  state: 'new_york',
-  favorites: ['nyc brew', 'brew4life'],
-};
+// const user = {
+//   name: 'Ricky',
+//   usersid: 2,
+//   state: 'new_york',
+//   favorites: ['nyc brew', 'brew4life'],
+// };
 //If don't want user logged in then uncomment below....
-// const user = undefined;
+const user = undefined;
 
 const App = () => {
+  //Set user information here on load through useeffect?
+  // const [userInfo, setUserInfo] = useState('');
+
   return (
     <UserContext.Provider value={user}>
       <Router>
