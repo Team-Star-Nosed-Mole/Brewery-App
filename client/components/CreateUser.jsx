@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const CreateUser = () => {
+
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
   const [homestate, setHomeState] = useState()
@@ -39,64 +40,76 @@ const CreateUser = () => {
       <h1>Join Up and Drink Up</h1>
 
       <div>
-        <form className="createuser" onSubmit={handleSubmit}>
+        <form className='createuser' onSubmit={handleSubmit}>
           <div>
             <input
+
               autocomplete="off"
               className="submitItem"
               name="username"
               type="text"
               placeholder="username"
               autoFocus
+
               onChange={({ target }) => setUsername(target.value)}
             ></input>
           </div>
           <div>
             <input
+
               autocomplete="off"
               className="submitItem"
               name="password"
               type="password"
               placeholder="password"
+
               onChange={({ target }) => setPassword(target.value)}
             ></input>
           </div>
           <div>
             <input
+
               autocomplete="off"
               className="submitItem"
               name="homestate"
               type="text"
               placeholder="home state"
+
               onChange={({ target }) => setHomeState(target.value)}
             ></input>
           </div>
           <div>
             <input
+
               autocomplete="off"
               className="submitItem"
               name="firstname"
               type="text"
               placeholder="firstname"
+
               onChange={({ target }) => setFirstName(target.value)}
             ></input>
           </div>
           <div>
             <input
+
               autocomplete="off"
               className="submitItem"
               name="firstname"
               type="text"
               placeholder="lastname"
+
               onChange={({ target }) => setLastName(target.value)}
             ></input>
           </div>
+
 
           <input
             className="submitButton"
             type="submit"
             value="Create User"
           ></input>
+
         </form>
       </div>
     </div>
