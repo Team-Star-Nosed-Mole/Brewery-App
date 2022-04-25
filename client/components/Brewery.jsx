@@ -3,9 +3,9 @@ import UserContext from './UserDetails';
 
 const Brewery = (props) => {
   const user = useContext(UserContext);
-  const { name, street, address_2, test_array } = props;
+  const { name, street, address_2 } = props;
   // const brewery = props.brewery;
-  console.log(test_array);
+  // console.log(test_array);
 
   return (
     <>

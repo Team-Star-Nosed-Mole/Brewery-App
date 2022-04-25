@@ -40,12 +40,12 @@ brewController.getBreweries = async (req, res, next) => {
 brewController.getVisited = async (req, res, next) => {
   ////// getFaves to Do ////////
   console.log(`MADE IT TO getVISITED`);
-  const usersID = req.params.id;
+  const usersID = req.query.id;
   //       /:id for getting req.params.id
   const queryString = `SELECT * FROM visited WHERE usersid = ${usersID}`;
   try {
     const visits = await db.query(queryString);
-    res.locals.visited = visits;
+    res.locals.visited = visits.rows;
     return next();
   } catch (err) {
     throw new Error({
