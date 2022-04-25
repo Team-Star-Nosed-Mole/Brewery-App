@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [state, setSetState] = useState();
+const CreateUser = () => {
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [homestate, setHomeState] = useState();
+  const [firstname, setFirstName] = useState();
+  const [lastname, setLastName] = useState();
   let navigate = useNavigate();
   console.log('createUser');
   // function loginClick() {
@@ -14,20 +17,25 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); //So that form submission doesn't trigger a page refresh
     const user = { username, password };
-    // send the username and password to the server
     try {
-      const response = await fetch('/createuser', {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await axios.post('/createUser', {
+        newUser: {
+          username: username,
+          password: password,
+          homestate: homestate,
+          firstname: firstname,
+          lastname: lastname,
         },
-        body: JSON.stringify(user),
       });
-      const responseBody = await response.json();
-    } catch {}
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+      navigate('/createuser');
+    }
   };
 
   return (
+<<<<<<< HEAD
     <div className='createuser'>
       <h1>Create User Page</h1>
 
@@ -51,6 +59,53 @@ const Login = () => {
             placeholder='state'
             onChange={({ target }) => setState(target.value)}
           ></input>
+=======
+    <div>
+      <h1>Join Up and Drink Up</h1>
+
+      <div>
+        <form className="createuser" onSubmit={handleSubmit}>
+          <div>
+            <input
+              name="username"
+              type="text"
+              placeholder="username"
+              onChange={({ target }) => setUsername(target.value)}
+            ></input>
+          </div>
+          <div>
+            <input
+              name="password"
+              type="password"
+              placeholder="password"
+              onChange={({ target }) => setPassword(target.value)}
+            ></input>
+          </div>
+          <div>
+            <input
+              name="homestate"
+              type="text"
+              placeholder="home state"
+              onChange={({ target }) => setHomeState(target.value)}
+            ></input>
+          </div>
+          <div>
+            <input
+              name="firstname"
+              type="text"
+              placeholder="firstname"
+              onChange={({ target }) => setFirstName(target.value)}
+            ></input>
+          </div>
+          <div>
+            <input
+              name="firstname"
+              type="text"
+              placeholder="lastname"
+              onChange={({ target }) => setLastName(target.value)}
+            ></input>
+          </div>
+>>>>>>> 80163d17d6f81a09aad306f89823bdc00eaf2508
 
           <input type='submit' value='Create User'></input>
         </form>
@@ -59,4 +114,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default CreateUser;

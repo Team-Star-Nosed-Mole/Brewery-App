@@ -8,8 +8,13 @@ const pool = new Pool({
   connectionString: PG_URI,
 });
 
-pool.on("connect", (client) => {
-  console.log("Connected to Pool", client);
+// pool.on("connect", (client) => {
+//   console.log("Connected to Pool", client);
+// });
+
+pool.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected to PostgresDB");
 });
 
 module.exports = {

@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
-import UserContext from './UserDetails';
-import Brewery from './Brewery';
-import axios from 'axios';
+import React, { useState, useEffect, useContext } from 'react'
+import UserContext from './UserDetails'
+import Brewery from './Brewery'
+import axios from 'axios'
 
 const StateBreweries = (props) => {
-  const stateBreweries = props.stateBreweries;
-  const addStateToVisited = props.addStateToVisited;
+  const stateBreweries = props.stateBreweries
+  const addStateToVisited = props.addStateToVisited
 
   const stateBreweriesArray = stateBreweries.map((brewery, index) => {
     return (
@@ -16,14 +16,14 @@ const StateBreweries = (props) => {
         uniqueid={`StateBrewery${index}`} //avoiding conflicts with database field id
         key={`StateBrewery${index}`}
       />
-    );
-  });
+    )
+  })
   return (
-    <div>
-      <h2>State Breweries</h2>
+    <div className="columnStyle">
+      <h2>Breweries in Your State</h2>
       {stateBreweriesArray}
     </div>
-  );
-};
+  )
+}
 
-export default StateBreweries;
+export default StateBreweries
