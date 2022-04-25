@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, flushSync } from 'react';
 import StateBreweries from './StateBreweries';
 import VisitedBreweries from './VisitedBreweries';
 import UserContext from './UserDetails';
@@ -7,6 +7,7 @@ import { parse } from 'ipaddr.js';
 
 const UserLanding = () => {
   //Obtaining state upon user hitting landing page - user's state breweries and visited breweries
+  //Batching state changes in React leading to onClick update lags...
   const [stateBreweries, setStateBreweries] = useState();
   const [visBreweries, setVisBreweries] = useState();
   const user = useContext(UserContext);
@@ -31,8 +32,6 @@ const UserLanding = () => {
 
   const addStateToVisited = async (breweryDetails) => {
     //Add state brewery to visited brewery list
-    // console.log(breweryDetails.usersid);
-    // console.log(user.usersid);
     const response = await axios.post('/visited/add', {
       addVisited: {
         breweryid: breweryDetails.id,
@@ -46,20 +45,14 @@ const UserLanding = () => {
       // params: { userId: user.usersid }, //Having trouble sending over user id as separate params
     });
 
-    //ONLY RE-RENDERING ON FIRST STATE CHANGE.....
+    //Skips re-rendering sometimes....think due to automatchic batching...flushSync possible solution
+    //https://github.com/reactwg/react-18/discussions/21
     setVisBreweries([...response.data.visited]);
-
-    // console.log('ricky');
-    // console.log(`breweryDetails.id: ${breweryDetails.id}`);
-    // console.log(`breweryDetails.name: ${breweryDetails.name}`);
-    // console.log(`breweryDetails.type: ${breweryDetails.brewery_type}`);
-    // console.log(`breweryDetails.state: ${breweryDetails.state}`);
-    // console.log(`breweryDetails.city: ${breweryDetails.city}`);
-    // console.log(`breweryDetails.phone: ${breweryDetails.phone}`);
   };
 
   const removeVisited = async (breweryDetails) => {
     //Add state brewery to visited brewery list
+
     console.log('ricky');
     console.log(`breweryDetails.id: ${breweryDetails.id}`);
     console.log(`breweryDetails.name: ${breweryDetails.name}`);
@@ -80,6 +73,8 @@ const UserLanding = () => {
       },
       // params: { userId: user.usersid },
     });
+
+    setVisBreweries([...response.data.visited]);
   };
 
   if (stateBreweries) {

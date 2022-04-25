@@ -70,6 +70,7 @@ const Brewery = (props) => {
             onClick={(e) => {
               // console.log('Remove Visited - Function');
               // console.log(bAttribs.removeVisited);
+
               bAttribs.removeVisited({
                 id: bAttribs.id,
                 name: bAttribs.breweryname,

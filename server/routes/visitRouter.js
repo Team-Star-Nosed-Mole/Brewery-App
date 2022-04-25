@@ -22,7 +22,7 @@ router.delete(
     console.log(
       'made it back from controller to the apiBrewRouter DELETE middleware'
     );
-    return res.status(200).json(res.locals.visited);
+    return res.status(200).json(res.locals);
   }
 );
 

@@ -89,9 +89,13 @@ brewController.deleteVisitedBrew = async (req, res, next) => {
       userId,
     } = req.body;
 
+    res.locals.userid = userId;
+
     console.log('AFTER DESTRUCTURING');
-    const text = `DELETE FROM visited WHERE usersid = $1 RETURNING *`;
-    const values = [userId];
+    // const text = `DELETE FROM visited WHERE usersid = $1 RETURNING *`;
+    // const values = [userId];
+    const text = `DELETE FROM visited WHERE usersid = $1 AND breweryname = $2 RETURNING *`;
+    const values = [userId, breweryname];
     // console.log(`userId: ${userId}`);
 
     // const queryString = `DELETE FROM visited WHERE usersid=${userId} AND breweryid =${breweryid}`;
