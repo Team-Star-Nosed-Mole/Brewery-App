@@ -6,7 +6,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [state, setSetState] = useState();
   let navigate = useNavigate();
-
+  console.log('createUser');
   // function loginClick() {
   //   navigate('/home');
   // }
@@ -28,31 +28,31 @@ const Login = () => {
   };
 
   return (
-    <div className="createuser">
+    <div className='createuser'>
       <h1>Create User Page</h1>
 
       <div>
         <form onSubmit={handleSubmit}>
           <input
-            name="username"
-            type="text"
-            placeholder="username"
+            name='username'
+            type='text'
+            placeholder='username'
             onChange={({ target }) => setUsername(target.value)}
           ></input>
           <input
-            name="password"
-            type="password"
-            placeholder="password"
+            name='password'
+            type='password'
+            placeholder='password'
             onChange={({ target }) => setPassword(target.value)}
           ></input>
           <input
-            name="state"
-            type="text"
-            placeholder="state"
+            name='state'
+            type='text'
+            placeholder='state'
             onChange={({ target }) => setState(target.value)}
           ></input>
 
-          <input type="submit" value="Create User"></input>
+          <input type='submit' value='Create User'></input>
         </form>
       </div>
     </div>

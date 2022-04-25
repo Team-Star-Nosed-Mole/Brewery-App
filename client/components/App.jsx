@@ -37,14 +37,14 @@ const App = () => {
   return (
     <UserContext.Provider value={user}>
       <Router>
-        <div className="App">
+        <div className='App'>
           <Navbar />
           <Routes>
-            <Route exact path="/" element={<Home />}></Route>
-            <Route exact path="/login" element={<Login />}></Route>
-            <Route exact path="/createuser" element={<CreateUser />}></Route>
-            <Route exact path="/userlanding" element={<UserLanding />}></Route>
-            <Route path="*" element={<Navigate to="/" replace />}></Route>
+            <Route exact path='/' element={<Home />}></Route>
+            <Route exact path='/login' element={<Login />}></Route>
+            <Route exact path='/createuser' element={<CreateUser />}></Route>
+            <Route exact path='/userlanding' element={<UserLanding />}></Route>
+            <Route path='*' element={<Navigate to='/' replace />}></Route>
           </Routes>
           <Footer />
         </div>
