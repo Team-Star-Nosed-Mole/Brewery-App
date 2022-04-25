@@ -10,6 +10,7 @@ const VisitedBreweries = (props) => {
     return (
       <Brewery
         {...brewery} //passing all of the properties down for each brewery
+        removeVisited={removeVisited}
         breweryComp={'visited'}
         uniqueid={`VisBrewery${index}`} //avoiding conflicts with database field id
         key={`VisBrewery${index}`}

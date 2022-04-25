@@ -68,15 +68,16 @@ const Brewery = (props) => {
           <span>City: {bAttribs.brewerycity}</span>
           <button
             onClick={(e) => {
-              console.log('Remove Visited - Function');
-              // bAttribs.removeVisited({
-              //   id: bAttribs.id,
-              //   name: bAttribs.name,
-              //   brewery_type: bAttribs.brewery_type,
-              //   state: bAttribs.state,
-              //   city: bAttribs.city,
-              //   phone: bAttribs.phone,
-              // });
+              // console.log('Remove Visited - Function');
+              // console.log(bAttribs.removeVisited);
+              bAttribs.removeVisited({
+                id: bAttribs.id,
+                name: bAttribs.breweryname,
+                brewery_type: bAttribs.brewerytype,
+                state: bAttribs.brewerystate,
+                city: bAttribs.brewerycity,
+                phone: bAttribs.breweryphone,
+              });
             }}
           >
             Remove

@@ -46,10 +46,20 @@ const UserLanding = () => {
       // params: { userId: user.usersid }, //Having trouble sending over user id as separate params
     });
 
-    // setVisBreweries([...response.data.visited]);
-    setVisBreweries(JSON.parse(JSON.stringify(response.data.visited)));
+    //ONLY RE-RENDERING ON FIRST STATE CHANGE.....
+    setVisBreweries([...response.data.visited]);
 
-    // setVisBreweries(JSON.parse(JSON.stringify(response.data.visited)));
+    // console.log('ricky');
+    // console.log(`breweryDetails.id: ${breweryDetails.id}`);
+    // console.log(`breweryDetails.name: ${breweryDetails.name}`);
+    // console.log(`breweryDetails.type: ${breweryDetails.brewery_type}`);
+    // console.log(`breweryDetails.state: ${breweryDetails.state}`);
+    // console.log(`breweryDetails.city: ${breweryDetails.city}`);
+    // console.log(`breweryDetails.phone: ${breweryDetails.phone}`);
+  };
+
+  const removeVisited = async (breweryDetails) => {
+    //Add state brewery to visited brewery list
     console.log('ricky');
     console.log(`breweryDetails.id: ${breweryDetails.id}`);
     console.log(`breweryDetails.name: ${breweryDetails.name}`);
@@ -57,28 +67,19 @@ const UserLanding = () => {
     console.log(`breweryDetails.state: ${breweryDetails.state}`);
     console.log(`breweryDetails.city: ${breweryDetails.city}`);
     console.log(`breweryDetails.phone: ${breweryDetails.phone}`);
-  };
 
-  const removeVisited = async (breweryDetails) => {
-    //Add state brewery to visited brewery list
-    axios.post('/visited/delete', {
-      addVisited: {
+    const response = await axios.delete('/visited/delete', {
+      data: {
         breweryid: breweryDetails.id,
         breweryname: breweryDetails.name,
         brewerytype: breweryDetails.brewery_type,
         brewerystate: breweryDetails.state,
         brewerycity: breweryDetails.city,
         breweryphone: breweryDetails.phone,
+        userId: user.usersid,
       },
-      params: { userId: user.usersid },
+      // params: { userId: user.usersid },
     });
-    console.log('ricky');
-    console.log(`breweryDetails.id: ${breweryDetails.id}`);
-    console.log(`breweryDetails.name: ${breweryDetails.name}`);
-    console.log(`breweryDetails.type: ${breweryDetails.brewery_type}`);
-    console.log(`breweryDetails.state: ${breweryDetails.state}`);
-    console.log(`breweryDetails.city: ${breweryDetails.city}`);
-    console.log(`breweryDetails.phone: ${breweryDetails.phone}`);
   };
 
   if (stateBreweries) {

@@ -68,10 +68,45 @@ brewController.getVisited = async (req, res, next) => {
 };
 
 brewController.deleteVisitedBrew = async (req, res, next) => {
-  const entryId = req.params.entryId;
-  const queryString = `DELETE FROM visited WHERE id=${entryId}`;
+  // const entryId = req.params.entryId;
+  // const queryString = `DELETE FROM visited WHERE id=${entryId}`;
+  // const queryString = `DELETE FROM visited WHERE id=${entryId}`;
+
   try {
-    await db.query(queryString);
+    console.log('IN deleteVisitedBrew MiddleWare');
+    // console.log(req);
+    console.log(`REQUEST BODY: ${req.body}`); //Axios delete request data comes in body
+    // console.log(`REQUEST HEADERS: ${req.headers}`);
+    // console.log(req.params.breweryid);
+    // console.log(req.body.removeVisited);
+    const {
+      breweryid,
+      breweryname,
+      brewerytype,
+      brewerystate,
+      brewerycity,
+      breweryphone,
+      userId,
+    } = req.body;
+
+    console.log('AFTER DESTRUCTURING');
+    const text = `DELETE FROM visited WHERE usersid = $1 RETURNING *`;
+    const values = [userId];
+    // console.log(`userId: ${userId}`);
+
+    // const queryString = `DELETE FROM visited WHERE usersid=${userId} AND breweryid =${breweryid}`;
+    // const queryString = `DELETE FROM visited WHERE usersid=2`;
+    // const queryString = `DELETE FROM visited WHERE usersid=2`;
+
+    // await db.query(queryString);
+    await db.query(text, values, (err, res) => {
+      if (err) {
+        console.log(err.stack);
+      } else {
+        console.log(res.rows[0]);
+      }
+    });
+
     return next();
   } catch (err) {
     throw new Error({
