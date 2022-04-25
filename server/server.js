@@ -21,6 +21,15 @@ app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../client/template.html'));
 });
 
+app.post('/createUser', userController.createUser,  (req, res) => {
+  res.json(res.locals.users);
+});
+
+app.post('/login', userController.verifyLogin, userController.setCookie, (req, res) => {
+  console.log('login success!')
+  res.redirect('/userlanding');
+});
+
 // ERROR HANDLER
 //invoked if you pass an argument to next()
 app.use((err, req, res, next) => {
@@ -35,15 +44,6 @@ app.use((err, req, res, next) => {
   console.log('ERROR: ', errorObj.log);
   return res.status(errorObj.status).send(errorObj.message);
 });
-
-app.post('/newUser', userController.createUser,  (req, res) => {
-  res.json(res.locals.users);
-})
-
-app.post('/login', userController.verifyLogin, userController.setCookie, (req, res) => {
-  console.log('login success!')
-  res.send('login success');
-})
 
 module.exports = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
