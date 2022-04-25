@@ -5,11 +5,11 @@ const Footer = (props) => {
   const user = useContext(UserContext);
 
   return (
-    <>
+    <div className='footer-container'>
       <footer>
-        <h2>FOOTER</h2>
+        <h2>Please Drink Responsibly</h2>
       </footer>
-    </>
+    </div>
   );
 };
 
