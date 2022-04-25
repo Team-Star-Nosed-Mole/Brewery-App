@@ -1,15 +1,27 @@
-express = require("express");
+express = require('express');
 
-const brewController = require("../controllers/brewController");
+const brewController = require('../controllers/brewController');
 
 const router = express.Router();
 
 router.get(
-  "/:state",
+  '/',
+  // '/:state',
+  brewController.getBreweries,
+  (req, res) => {
+    console.log('made it back from controller to apiBrewRouter GET middleware');
+    // console.log(res.locals.getBreweries);
+    return res.status(200).json(res.locals.getBreweries);
+  }
+);
+
+router.get(
+  '/',
+  // '/:state',
   brewController.getVisited,
   brewController.getBreweries,
   (req, res) => {
-    console.log("made it back from controller to apiBrewRouter GET middleware");
+    console.log('made it back from controller to apiBrewRouter GET middleware');
     console.log(res.locals.getBreweries);
     return res.status(200).json(res.locals.getBreweries, res.locals.visited);
   }

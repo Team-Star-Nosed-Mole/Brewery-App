@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from './UserDetails';
 
-const Brewery = () => {
+const Brewery = (props) => {
   const user = useContext(UserContext);
+  const { name, street, address_2, test_array } = props;
+  // const brewery = props.brewery;
+  console.log(test_array);
 
   return (
     <>
       <div>
-        <span>Name:</span>
-        <span>Location:</span>
-        <span>Rating:</span>
+        <span>Name: {name}</span>
+        <span>Location: {street}</span>
+        <span>Rating: {address_2}</span>
       </div>
     </>
   );
