@@ -6,8 +6,10 @@ import axios from 'axios';
 const StateBreweries = (props) => {
   // const [stateBreweries, setStateBreweries] = useState();
   const user = useContext(UserContext);
-  console.log(`${props}`);
+  const addStateToVisited = props.addStateToVisited;
   const stateBreweries = props.stateBreweries;
+
+  // console.log(addStateToBreweries);
   // console.log(`In State Breweries: ${stateBreweries}`);
 
   //Destructure stateBreweries from UserLanding
@@ -37,12 +39,10 @@ const StateBreweries = (props) => {
   const stateBreweriesArray = stateBreweries.map((brewery, index) => {
     return (
       <Brewery
-        // name={brewery.name}
-        // street={brewery.street}
-        // test_array={[...test_array]}
-        {...brewery}
-        id={`Brewery${index}`}
-        key={`Brewery${index}`}
+        {...brewery} //passing all of the properties down for each brewery
+        addStateToVisited={addStateToVisited}
+        id={`StateBrewery${index}`}
+        key={`StateBrewery${index}`}
       />
     );
   });

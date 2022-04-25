@@ -14,7 +14,8 @@ const router = express.Router();
 ///////////////////////////////////////////////////////////////////////////
 // Would this also need to get Updated visited once it's been deleted
 router.delete(
-  '/visited/:userId',
+  // '/visited/:userId',
+  '/delete',
   brewController.deleteVisitedBrew,
   brewController.getVisited,
   (req, res) => {
@@ -26,7 +27,8 @@ router.delete(
 );
 
 router.post(
-  '/visited/:userId',
+  // '/visited/:userId',
+  '/add',
   brewController.addVisited,
   brewController.getVisited,
   (req, res) => {

@@ -40,7 +40,15 @@ brewController.getBreweries = async (req, res, next) => {
 brewController.getVisited = async (req, res, next) => {
   ////// getFaves to Do ////////
   console.log(`MADE IT TO getVISITED`);
-  const usersID = req.query.id;
+  let usersID;
+
+  if (req.query.id) {
+    usersID = req.query.id;
+  } else {
+    req.params.id;
+  }
+  console.log(`USERSID ${usersID}`);
+
   //       /:id for getting req.params.id
   const queryString = `SELECT * FROM visited WHERE usersid = ${usersID}`;
   try {
@@ -81,15 +89,21 @@ brewController.addVisited = async (req, res, next) => {
       brewerycity,
       breweryphone,
     } = req.body.addVisited;
+    console.log(`Destructured from Post Request`);
+
     const userId = req.params.userId;
+    console.log(`UserID ${userId}`);
     const queryString = `INSERT INTO visited (usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES (${userId}, ${breweryid}, ${breweryname}, ${brewerytype}, ${brewerystate}, ${brewerycity}, ${breweryphone})`;
+    // const queryString = `INSERT INTO visited (id, usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES (${11}, ${1}, ${17}, ${'Amber'}, ${brewerytype}, ${'York'}, ${'LIC'}, ${breweryphone})`;
+    // const queryString = `INSERT INTO visited (usersid, breweryid, breweryname, brewerytype, brewerystate, brewerycity, breweryphone) VALUES (${1}, ${'testbrew'}, ${'testbrew9'}, ${'micro'}, ${'new_york'}, ${'NYC'}, ${'452413421'})`;
     await db.query(queryString);
     return next();
   } catch (err) {
-    throw new Error({
-      log: 'error in the brewController deleteVisitedBrews method',
-      message: { err: 'error in the brewController deleteVisitedBrews method' },
-    });
+    console.log(err);
+    // throw new Error({
+    //   log: 'error in the brewController deleteVisitedBrews method',
+    //   message: { err: 'error in the brewController deleteVisitedBrews method' },
+    // });
   }
 };
 
