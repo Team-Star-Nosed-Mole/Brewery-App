@@ -1,3 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
 body {
-  background-color: blue;
+  background-color: lightblue;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.brand {
+  font-size: 24px;
+}
+.nav_links {
+  font-size: 20px;
+  list-style: none;
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.brand,
+.nav_links {
+  font-family: 'Poppins', 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #ededed;
+  text-decoration: none;
+}
+
+header {
+  background-color: #313030;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.logout-Btn {
+  /* border-style: solid;
+  border-color: red; */
+  border-width: 2px;
+  padding: 0.5em 1em;
+  background-color: rgba(249, 228, 26, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+  margin-right: 1em;
+  color: #313030;
+}
+
+.logout-Btn:hover {
+  background-color: rgba(249, 228, 26, 0.8);
+  text-decoration: none;
+}
+
+footer {
+  background-color: #575555;
+  display: flex;
+  color: #ededed;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.userlanding {
+  margin-top: 5em;
 }
