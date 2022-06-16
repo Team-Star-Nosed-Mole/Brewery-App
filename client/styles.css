@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
-
 body {
   /* background-color: lightblue; */
   background: url('https://images.unsplash.com/photo-1612528443702-f6741f70a049?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80');
@@ -15,15 +14,12 @@ body {
   padding: 0;
 }
 
-
-
 .home {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 
 .nav {
   display: flex;
@@ -173,6 +169,7 @@ button {
 }
 
 .brand {
+  margin-left: 40px;
   font-size: 24px;
 }
 .nav_links {
